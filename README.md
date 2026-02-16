@@ -1,19 +1,84 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Microtools
 
-# Run and deploy your AI Studio app
+Microtools is a growing collection of practical web tools for multiple platforms (Discord, WhatsApp, Telegram, and more).
 
-This contains everything you need to run your app locally.
+Current focus: **Discord Tools**.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1kMnSZX0kqeJrd_mXhCL3JOJawnatPbwO
+## Features (Current)
 
-## Run Locally
+- Timestamp Generator
+- Snowflake Decoder
+- ID Lookup
+- Permission Calculator
+- Invite Generator
+- Markdown Helper
+- Channel Decorator
+- Text Transform
+- Asset CDN Helper
+- Color Guide
+- Embed Creator
+- Webhook Sender
+- Emoji Maker
 
-**Prerequisites:**  Node.js
+## Tech Stack
 
+- React + TypeScript
+- Vite
+- Tailwind utility classes (inline)
+- Lucide icons
 
-1. Install dependencies:
-   `npm install`
-2. Run the app:
-   `npm run dev`
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+ (recommended: 20+)
+- npm
+
+### Install
+
+```bash
+npm install
+```
+
+### Run locally
+
+```bash
+npm run dev
+```
+
+### Build
+
+```bash
+npm run build
+```
+
+Build output is generated in:
+
+`dist/`
+
+## Deployment (Manual VPS)
+
+1. Run `npm run build`
+2. Upload `dist/` contents to your web root (example):
+   - `/www/wwwroot/microtools.arolisg.dev/`
+3. Replace existing files
+4. Clear CDN cache (if enabled)
+
+## SEO
+
+Includes:
+
+- `public/robots.txt`
+- `public/sitemap.xml`
+- canonical metadata in `index.html`
+
+## Roadmap
+
+- Add WhatsApp tools collection
+- Add Telegram tools collection
+- Expand AI-assisted utilities as optional modules
+- Improve shared UI system across all tools
+
+## License
+
+MIT
