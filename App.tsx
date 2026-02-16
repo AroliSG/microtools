@@ -312,6 +312,15 @@ const App: React.FC = () => {
             </p>
           </div>
 
+          <section className="mb-8 bg-[#2B2D31] border border-[#3F4147] rounded-xl p-4">
+            <p className="text-xs font-bold uppercase tracking-wider text-[#B5BAC1] mb-2">What's New</p>
+            <ul className="text-sm text-[#DBDEE1] space-y-1">
+              <li>v1.0.0 released</li>
+              <li>Emoji Maker added</li>
+              <li>Shared UI refactor for core tools</li>
+            </ul>
+          </section>
+
           <section className="mb-8">
             <label className="relative block">
               <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9CA3AF]" />

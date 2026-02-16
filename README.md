@@ -4,6 +4,12 @@ Microtools is a growing collection of practical web tools for multiple platforms
 
 Current focus: **Discord Tools**.
 
+## What's New
+
+- `v1.0.0` released (see `CHANGELOG.md`)
+- New Emoji Maker
+- Shared UI refactor for major tools
+
 ## Features (Current)
 
 - Timestamp Generator
@@ -74,10 +80,15 @@ Includes:
 
 ## Roadmap
 
-- Add WhatsApp tools collection
-- Add Telegram tools collection
-- Expand AI-assisted utilities as optional modules
-- Improve shared UI system across all tools
+- See `ROADMAP.md`
+
+## Project Docs
+
+- `CHANGELOG.md`
+- `ROADMAP.md`
+- `DEPLOY_CHECKLIST.md`
+- `OPERATIONS_CHECKLIST.md`
+- `ANALYTICS_SETUP.md`
 
 ## License
 
