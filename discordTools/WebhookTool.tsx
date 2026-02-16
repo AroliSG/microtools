@@ -65,7 +65,7 @@ const WebhookTool: React.FC = () => {
               <label className="block text-xs font-bold text-[#B5BAC1] uppercase tracking-wider mb-2">{'Message Content'}</label>
               <textarea
                 rows={5}
-                placeholder={'Hello from Discord Microtools!'}
+                placeholder={'Hello from Microtools!'}
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
                 className="w-full bg-[#1E1F22] border border-[#1E1F22] focus:border-[#5865F2] focus:ring-1 focus:ring-[#5865F2] rounded-lg p-3 outline-none transition-all text-white resize-none"

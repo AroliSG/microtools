@@ -8,7 +8,7 @@
   <rect width="1200" height="630" fill="url(#bg)" />
   <rect x="72" y="72" width="1056" height="486" rx="28" fill="#313338" stroke="#3f4147" />
   <circle cx="162" cy="162" r="34" fill="#5865f2" />
-  <text x="220" y="178" fill="#ffffff" font-size="52" font-family="Sora, Arial, sans-serif" font-weight="700">Discord Microtools Pro</text>
+  <text x="220" y="178" fill="#ffffff" font-size="52" font-family="Sora, Arial, sans-serif" font-weight="700">Microtools</text>
   <text x="162" y="265" fill="#b5bac1" font-size="30" font-family="Sora, Arial, sans-serif">Timestamps, Snowflakes, Embeds, Webhooks, Assets y mas.</text>
   <rect x="162" y="332" width="340" height="74" rx="14" fill="#5865f2" />
   <text x="194" y="378" fill="#ffffff" font-size="30" font-family="Sora, Arial, sans-serif" font-weight="600">discord tools</text>
