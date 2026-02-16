@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { EmbedData } from './types';
 import { Layout, Palette, Type, Plus, Trash2, Send, Wand2, Download, Eraser, Upload } from 'lucide-react';
+import { ToolCard, ToolHeader, ToolShell } from './ui';
 
 const createDefaultEmbed = (): EmbedData => ({
   title: 'Welcome to Microtools!',
@@ -152,15 +153,12 @@ const EmbedTool: React.FC = () => {
   };
 
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <header className="mb-8">
-        <h2 className="text-3xl font-extrabold text-white mb-2">Embed Creator</h2>
-        <p className="text-[#B5BAC1]">Build rich Discord embeds with complete data and export/import JSON.</p>
-      </header>
+    <ToolShell>
+      <ToolHeader title="Embed Creator" description="Build rich Discord embeds with complete data and export/import JSON." />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
         <div className="space-y-6">
-          <div className="bg-[#2B2D31] p-6 rounded-2xl border border-[#3F4147] space-y-4">
+          <ToolCard className="space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-bold text-[#B5BAC1] uppercase tracking-wider flex items-center gap-2">
                 <Type size={16} /> Content
@@ -284,9 +282,9 @@ const EmbedTool: React.FC = () => {
                 onChange={(e) => updateEmbed('footer', { ...embed.footer, icon_url: e.target.value })}
               />
             </div>
-          </div>
+          </ToolCard>
 
-          <div className="bg-[#2B2D31] p-6 rounded-2xl border border-[#3F4147] space-y-4">
+          <ToolCard className="space-y-4">
             <div className="flex justify-between items-center">
               <h3 className="text-sm font-bold text-[#B5BAC1] uppercase tracking-wider flex items-center gap-2">
                 <Layout size={16} /> Fields ({embed.fields.length}/25)
@@ -335,11 +333,11 @@ const EmbedTool: React.FC = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </ToolCard>
         </div>
 
         <div className="lg:sticky lg:top-4 space-y-6">
-          <div className="bg-[#2B2D31] p-8 rounded-2xl border border-[#3F4147] shadow-2xl">
+          <ToolCard className="p-8 shadow-2xl">
             <h4 className="text-xs font-bold text-[#B5BAC1] uppercase mb-6 flex items-center gap-2">
               <Wand2 size={14} className="text-[#5865F2]" /> Real-time Preview
             </h4>
@@ -401,17 +399,17 @@ const EmbedTool: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </ToolCard>
 
-          <div className="bg-[#2B2D31] p-6 rounded-2xl border border-[#3F4147]">
+          <ToolCard>
             <h4 className="text-xs font-bold text-[#B5BAC1] uppercase mb-4">JSON Output</h4>
             <pre className="mono bg-[#1E1F22] p-4 rounded-xl text-[10px] text-[#B5BAC1] overflow-x-auto">
               {JSON.stringify({ embeds: [embed] }, null, 2)}
             </pre>
-          </div>
+          </ToolCard>
         </div>
       </div>
-    </div>
+    </ToolShell>
   );
 };
 

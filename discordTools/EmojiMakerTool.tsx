@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Upload, Download, RefreshCw, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { FieldLabel, PrimaryButton, ToolCard, ToolHeader, ToolShell } from './ui';
 
 const MAX_DISCORD_EMOJI_BYTES = 256 * 1024;
 
@@ -177,16 +178,13 @@ const EmojiMakerTool: React.FC = () => {
   };
 
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <header>
-        <h2 className="text-3xl font-extrabold text-white mb-2">Emoji Maker</h2>
-        <p className="text-[#B5BAC1]">Convert any image into a Discord-ready emoji file (max 256 KB).</p>
-      </header>
+    <ToolShell>
+      <ToolHeader title="Emoji Maker" description="Convert any image into a Discord-ready emoji file (max 256 KB)." />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <section className="bg-[#2B2D31] p-6 rounded-2xl border border-[#3F4147] shadow-xl space-y-5">
+        <ToolCard className="space-y-5">
           <div>
-            <label className="block text-xs font-bold text-[#B5BAC1] uppercase tracking-wider mb-2">Upload Image</label>
+            <FieldLabel>Upload Image</FieldLabel>
             <label className="w-full h-32 border-2 border-dashed border-[#4E5058] rounded-xl bg-[#1E1F22] hover:border-[#5865F2] transition-colors cursor-pointer flex flex-col items-center justify-center text-[#B5BAC1]">
               <Upload size={18} />
               <span className="text-sm mt-2">Click to choose image</span>
@@ -207,6 +205,7 @@ const EmojiMakerTool: React.FC = () => {
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="block text-[10px] font-bold text-[#B5BAC1] uppercase mb-2">Output Format</label>
+              
               <select
                 value={resultFormat}
                 onChange={(e) => setResultFormat(e.target.value as OutputFormat)}
@@ -260,14 +259,14 @@ const EmojiMakerTool: React.FC = () => {
             </div>
           )}
 
-          <button
+          <PrimaryButton
             onClick={processImage}
             disabled={!sourceUrl || processing}
-            className="w-full py-3 bg-[#5865F2] hover:bg-[#4752C4] disabled:bg-[#4E5058] text-white rounded-lg font-bold transition-all inline-flex items-center justify-center gap-2"
+            className="inline-flex items-center justify-center gap-2"
           >
             <RefreshCw size={16} className={processing ? 'animate-spin' : ''} />
             {processing ? 'Processing...' : 'Generate Emoji'}
-          </button>
+          </PrimaryButton>
 
           {error && (
             <div className="flex items-center gap-2 text-xs p-3 rounded-lg bg-[#ED4245]/10 border border-[#ED4245]/20 text-[#ED4245]">
@@ -275,9 +274,9 @@ const EmojiMakerTool: React.FC = () => {
               <span>{error}</span>
             </div>
           )}
-        </section>
+        </ToolCard>
 
-        <section className="bg-[#2B2D31] p-6 rounded-2xl border border-[#3F4147] shadow-xl flex flex-col items-center justify-center text-center">
+        <ToolCard className="flex flex-col items-center justify-center text-center">
           {isReady ? (
             <div className="w-full space-y-5">
               <img src={resultUrl} alt="Emoji output" className="w-40 h-40 mx-auto rounded-xl bg-[#1E1F22] object-contain p-3" />
@@ -288,23 +287,23 @@ const EmojiMakerTool: React.FC = () => {
                 {isDiscordSafe ? <CheckCircle2 size={14} className="text-[#23A559]" /> : <AlertCircle size={14} className="text-[#F0B132]" />}
                 {isDiscordSafe ? 'Ready to upload to Discord' : 'Too large, lower size/quality and regenerate'}
               </div>
-              <button
+              <PrimaryButton
                 onClick={download}
                 disabled={!isDiscordSafe}
-                className="w-full py-3 bg-[#5865F2] hover:bg-[#4752C4] disabled:bg-[#4E5058] text-white rounded-lg font-bold transition-all inline-flex items-center justify-center gap-2"
+                className="inline-flex items-center justify-center gap-2"
               >
                 <Download size={16} />
                 Download Emoji
-              </button>
+              </PrimaryButton>
             </div>
           ) : (
             <div className="text-[#B5BAC1]">
               <p className="text-sm">Upload an image and generate a Discord-compatible emoji file.</p>
             </div>
           )}
-        </section>
+        </ToolCard>
       </div>
-    </div>
+    </ToolShell>
   );
 };
 

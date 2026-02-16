@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { DISCORD_EPOCH } from './constants';
 import { Search, Calendar, ShieldCheck, Info, Globe, ExternalLink, Copy, Check } from 'lucide-react';
+import { ToolCard, ToolHeader, ToolShell, FieldLabel, PrimaryButton } from './ui';
 
 const IDLookupTool: React.FC = () => {
   const [id, setId] = useState('');
@@ -63,14 +64,11 @@ const IDLookupTool: React.FC = () => {
   };
 
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <header>
-        <h2 className="text-3xl font-extrabold text-white mb-2">ID Lookup</h2>
-        <p className="text-[#B5BAC1]">{'Analyze a Discord ID locally: creation date, age and JSON data.'}</p>
-      </header>
+    <ToolShell>
+      <ToolHeader title="ID Lookup" description="Analyze a Discord ID locally: creation date, age and JSON data." />
 
-      <div className="bg-[#2B2D31] p-6 rounded-2xl border border-[#3F4147] shadow-xl">
-        <label className="block text-xs font-bold text-[#B5BAC1] uppercase tracking-wider mb-2">{'Discord ID'}</label>
+      <ToolCard>
+        <FieldLabel>{'Discord ID'}</FieldLabel>
         <div className="relative">
           <input
             type="text"
@@ -81,11 +79,11 @@ const IDLookupTool: React.FC = () => {
           />
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[#B5BAC1]" size={20} />
         </div>
-      </div>
+      </ToolCard>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-1 space-y-6">
-          <section className="bg-[#2B2D31] p-6 rounded-2xl border border-[#3F4147] shadow-xl">
+          <ToolCard>
             <h3 className="text-sm font-bold text-white uppercase mb-6 flex items-center gap-2">
               <ShieldCheck size={16} className="text-[#5865F2]" /> {'Technical Data'}
             </h3>
@@ -115,7 +113,7 @@ const IDLookupTool: React.FC = () => {
                 <p className="text-xs">{'Enter a valid ID above'}</p>
               </div>
             )}
-          </section>
+          </ToolCard>
 
           <div className="bg-[#5865F2]/5 p-6 rounded-2xl border border-[#5865F2]/10">
             <h4 className="text-xs font-bold text-[#5865F2] mb-2">{'Tip'}</h4>
@@ -126,20 +124,20 @@ const IDLookupTool: React.FC = () => {
         </div>
 
         <div className="lg:col-span-2">
-          <section className="bg-[#2B2D31] h-full p-6 rounded-2xl border border-[#3F4147] shadow-xl flex flex-col">
+          <ToolCard className="h-full flex flex-col">
             <h3 className="text-sm font-bold text-white uppercase mb-6 flex items-center gap-2">
               <Globe size={16} className="text-[#FEE75C]" /> {'Asset & JSON'}
             </h3>
 
             {id ? (
               <div className="space-y-4">
-                <button
+                <PrimaryButton
                   onClick={openAssetCdn}
-                  className="w-full flex items-center justify-between p-3 bg-[#5865F2] hover:bg-[#4752C4] rounded-lg text-sm text-white transition-all"
+                  className="flex items-center justify-between p-3 text-sm"
                 >
                   <span>{'Open Asset CDN with this ID'}</span>
                   <ExternalLink size={14} />
-                </button>
+                </PrimaryButton>
 
                 <div className="bg-[#1E1F22] border border-[#3F4147] rounded-xl p-4">
                   <div className="flex items-center justify-between mb-3">
@@ -163,10 +161,10 @@ const IDLookupTool: React.FC = () => {
                 <p className="text-sm font-medium">{'Enter an ID to unlock actions.'}</p>
               </div>
             )}
-          </section>
+          </ToolCard>
         </div>
       </div>
-    </div>
+    </ToolShell>
   );
 };
 

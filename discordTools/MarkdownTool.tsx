@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Code, Quote, List, Eye, Copy, Check } from 'lucide-react';
+import { FieldLabel, ToolCard, ToolHeader, ToolShell } from './ui';
 
 const MarkdownTool: React.FC = () => {
   const [text, setText] = useState('');
@@ -31,17 +32,14 @@ const MarkdownTool: React.FC = () => {
   };
 
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <header>
-        <h2 className="text-3xl font-extrabold text-white mb-2">Markdown Helper</h2>
-        <p className="text-[#B5BAC1]">{'A quick playground to format your Discord messages with rich text markdown features.'}</p>
-      </header>
+    <ToolShell>
+      <ToolHeader title="Markdown Helper" description="A quick playground to format your Discord messages with rich text markdown features." />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="space-y-6">
-          <section className="bg-[#2B2D31] p-6 rounded-2xl border border-[#3F4147] shadow-xl">
+          <ToolCard>
             <div className="flex justify-between items-center mb-4">
-              <label className="text-xs font-bold text-[#B5BAC1] uppercase tracking-wider">{'Editor'}</label>
+              <FieldLabel className="mb-0">{'Editor'}</FieldLabel>
               <button
                 onClick={() => setText('')}
                 className="text-xs text-[#F23F43] hover:underline"
@@ -59,7 +57,7 @@ const MarkdownTool: React.FC = () => {
             />
 
             <div className="mt-6">
-              <label className="block text-xs font-bold text-[#B5BAC1] uppercase tracking-wider mb-3">{'Quick Actions'}</label>
+              <FieldLabel className="mb-3">{'Quick Actions'}</FieldLabel>
               <div className="flex flex-wrap gap-2">
                 {formats.map((f) => (
                   <button
@@ -73,11 +71,11 @@ const MarkdownTool: React.FC = () => {
                 ))}
               </div>
             </div>
-          </section>
+          </ToolCard>
         </div>
 
         <div className="space-y-6">
-          <section className="bg-[#2B2D31] p-6 rounded-2xl border border-[#3F4147] shadow-xl flex flex-col h-full">
+          <ToolCard className="flex flex-col h-full">
             <h4 className="text-sm font-bold text-white mb-4 flex items-center gap-2">
               <Eye size={16} className="text-[#5865F2]" /> {'Quick Reference'}
             </h4>
@@ -110,10 +108,10 @@ const MarkdownTool: React.FC = () => {
               {copied ? <Check size={18} /> : <Copy size={18} />}
               <span>{copied ? ('Copied to Clipboard') : ('Copy Final Message')}</span>
             </button>
-          </section>
+          </ToolCard>
         </div>
       </div>
-    </div>
+    </ToolShell>
   );
 };
 

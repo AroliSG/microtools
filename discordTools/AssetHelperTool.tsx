@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { ImageIcon, Copy, Check, ExternalLink } from 'lucide-react';
+import { FieldLabel, PrimaryButton, ToolCard, ToolHeader, ToolShell } from './ui';
 
 const AssetHelperTool: React.FC = () => {
   const initialParams = useMemo(() => new URLSearchParams(window.location.search), []);
@@ -141,16 +142,13 @@ const AssetHelperTool: React.FC = () => {
   };
 
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <header>
-        <h2 className="text-3xl font-extrabold text-white mb-2">Asset CDN Helper</h2>
-        <p className="text-[#B5BAC1]">{'Build official Discord CDN links for avatars, server icons, and banners.'}</p>
-      </header>
+    <ToolShell>
+      <ToolHeader title="Asset CDN Helper" description="Build official Discord CDN links for avatars, server icons, and banners." />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <section className="bg-[#2B2D31] p-6 rounded-2xl border border-[#3F4147] shadow-xl space-y-5">
+        <ToolCard className="space-y-5">
           <div>
-            <label className="block text-xs font-bold text-[#B5BAC1] uppercase tracking-wider mb-3">{'Asset Type'}</label>
+            <FieldLabel className="mb-3">{'Asset Type'}</FieldLabel>
             <div className="grid grid-cols-3 gap-2">
               {(['avatar', 'icon', 'banner'] as const).map((t) => (
                 <button
@@ -165,7 +163,7 @@ const AssetHelperTool: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-[#B5BAC1] uppercase tracking-wider mb-2">{type === 'avatar' ? ('User ID') : ('Server ID')}</label>
+            <FieldLabel>{type === 'avatar' ? ('User ID') : ('Server ID')}</FieldLabel>
             <input
               type="text"
               placeholder="e.g. 104245678901234567"
@@ -173,16 +171,16 @@ const AssetHelperTool: React.FC = () => {
               onChange={(e) => setTargetId(e.target.value.replace(/\D/g, ''))}
               className="w-full bg-[#1E1F22] border border-[#1E1F22] focus:border-[#5865F2] rounded-lg p-3 text-white mono text-sm"
             />
-            <button
+            <PrimaryButton
               onClick={clearAll}
-              className="mt-2 w-full py-2 bg-[#35373C] hover:bg-[#4E5058] text-white text-xs font-bold rounded-lg transition-all"
+              className="mt-2 py-2 bg-[#35373C] hover:bg-[#4E5058] text-xs"
             >
               {'Clear'}
-            </button>
+            </PrimaryButton>
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-[#B5BAC1] uppercase tracking-wider mb-2">Asset Hash</label>
+            <FieldLabel>Asset Hash</FieldLabel>
             <input
               type="text"
               placeholder={`e.g. ${type === 'avatar' ? 'a_abc123...' : 'abc123...'}`}
@@ -193,13 +191,13 @@ const AssetHelperTool: React.FC = () => {
             <p className="mt-2 text-[11px] text-[#B5BAC1]">
               {'This hash comes from Discord JSON field'} <span className="mono text-white">{type}</span>.
             </p>
-            <button
+            <PrimaryButton
               onClick={resolveFromId}
               disabled={!targetId || resolveLoading || type === 'icon'}
-              className="mt-2 w-full py-2 bg-[#5865F2] hover:bg-[#4752C4] disabled:bg-[#4E5058] text-white text-xs font-bold rounded-lg transition-all"
+              className="mt-2 py-2 text-xs"
             >
               {resolveLoading ? ('Resolving...') : ('Resolve hash by ID')}
-            </button>
+            </PrimaryButton>
             <p className="mt-2 text-[10px] text-[#9CA3AF]">
               Powered by API: <span className="mono">gatecord.com/wp-json/discord/profile</span>
             </p>
@@ -210,7 +208,7 @@ const AssetHelperTool: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-[#B5BAC1] uppercase tracking-wider mb-2">{'Discord JSON (optional)'}</label>
+            <FieldLabel>{'Discord JSON (optional)'}</FieldLabel>
             <textarea
               rows={4}
               value={rawDiscordJson}
@@ -218,17 +216,17 @@ const AssetHelperTool: React.FC = () => {
               placeholder={'Paste JSON object containing "avatar", "icon" or "banner"...'}
               className="w-full bg-[#1E1F22] border border-[#1E1F22] focus:border-[#5865F2] rounded-lg p-3 text-white mono text-xs outline-none resize-y"
             />
-            <button
+            <PrimaryButton
               onClick={extractHashFromJson}
-              className="mt-2 w-full py-2 bg-[#35373C] hover:bg-[#4E5058] text-white text-xs font-bold rounded-lg transition-all"
+              className="mt-2 py-2 bg-[#35373C] hover:bg-[#4E5058] text-xs"
             >
               {'Extract hash from JSON'}
-            </button>
+            </PrimaryButton>
             {jsonError && <p className="mt-2 text-[11px] text-[#ED4245]">{jsonError}</p>}
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-[#B5BAC1] uppercase tracking-wider mb-2">{'Image Size'}</label>
+            <FieldLabel>{'Image Size'}</FieldLabel>
             <div className="grid grid-cols-2 gap-2">
               <select
                 value={size}
@@ -237,18 +235,18 @@ const AssetHelperTool: React.FC = () => {
               >
                 {['128', '256', '512', '1024', '2048', '4096'].map((s) => <option key={s} value={s}>{s} px</option>)}
               </select>
-              <button
+              <PrimaryButton
                 onClick={downloadImage}
                 disabled={!downloadUrl}
-                className="w-full bg-[#5865F2] hover:bg-[#4752C4] disabled:bg-[#4E5058] text-white text-xs font-bold rounded-lg transition-all px-3"
+                className="text-xs px-3"
               >
                 {'Download image'}
-              </button>
+              </PrimaryButton>
             </div>
           </div>
-        </section>
+        </ToolCard>
 
-        <section className="bg-[#2B2D31] p-6 rounded-2xl border border-[#3F4147] shadow-xl flex flex-col items-center justify-center text-center">
+        <ToolCard className="flex flex-col items-center justify-center text-center">
           {url ? (
             <div className="w-full space-y-6">
               <div className="relative group mx-auto w-40 h-40">
@@ -265,13 +263,13 @@ const AssetHelperTool: React.FC = () => {
               </div>
 
               <div className="flex gap-3">
-                <button
+                <PrimaryButton
                   onClick={copy}
-                  className="flex-1 py-3 bg-[#5865F2] hover:bg-[#4752C4] text-white font-bold rounded-lg transition-all flex items-center justify-center gap-2"
+                  className="flex-1 flex items-center justify-center gap-2"
                 >
                   {copied ? <Check size={18} /> : <Copy size={18} />}
                   {copied ? ('Copied') : ('Copy URL')}
-                </button>
+                </PrimaryButton>
                 <a
                   href={url}
                   target="_blank"
@@ -317,9 +315,9 @@ const AssetHelperTool: React.FC = () => {
               <p className="text-sm">{'Enter a target ID and asset hash to generate the CDN link and see a preview.'}</p>
             </div>
           )}
-        </section>
+        </ToolCard>
       </div>
-    </div>
+    </ToolShell>
   );
 };
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Send, AlertCircle, CheckCircle2, User, Globe } from 'lucide-react';
+import { FieldLabel, ToolCard, ToolHeader, ToolShell } from './ui';
 
 const WebhookTool: React.FC = () => {
   const [url, setUrl] = useState('');
@@ -39,19 +40,16 @@ const WebhookTool: React.FC = () => {
   };
 
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <header>
-        <h2 className="text-3xl font-extrabold text-white mb-2">Webhook Sender</h2>
-        <p className="text-[#B5BAC1]">{'Test and manage Discord webhooks by sending test payloads directly from your browser.'}</p>
-      </header>
+    <ToolShell>
+      <ToolHeader title="Webhook Sender" description="Test and manage Discord webhooks by sending test payloads directly from your browser." />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-6">
-          <section className="bg-[#2B2D31] p-6 rounded-2xl border border-[#3F4147] shadow-xl space-y-4">
+          <ToolCard className="space-y-4">
             <div>
-              <label className="block text-xs font-bold text-[#B5BAC1] uppercase tracking-wider mb-2 flex items-center gap-2">
+              <FieldLabel className="flex items-center gap-2">
                 <Globe size={14} /> Webhook URL
-              </label>
+              </FieldLabel>
               <input
                 type="text"
                 placeholder="https://discord.com/api/webhooks/..."
@@ -62,7 +60,7 @@ const WebhookTool: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#B5BAC1] uppercase tracking-wider mb-2">{'Message Content'}</label>
+              <FieldLabel>{'Message Content'}</FieldLabel>
               <textarea
                 rows={5}
                 placeholder={'Hello from Microtools!'}
@@ -74,9 +72,9 @@ const WebhookTool: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-bold text-[#B5BAC1] uppercase tracking-wider mb-2 flex items-center gap-2">
+                <FieldLabel className="flex items-center gap-2">
                   <User size={14} /> {'Override Username'}
-                </label>
+                </FieldLabel>
                 <input
                   type="text"
                   placeholder={'Optional'}
@@ -86,7 +84,7 @@ const WebhookTool: React.FC = () => {
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-[#B5BAC1] uppercase tracking-wider mb-2">{'Override Avatar URL'}</label>
+                <FieldLabel>{'Override Avatar URL'}</FieldLabel>
                 <input
                   type="text"
                   placeholder="https://..."
@@ -127,11 +125,11 @@ const WebhookTool: React.FC = () => {
                 <p className="font-medium text-sm">{errorMsg}</p>
               </div>
             )}
-          </section>
+          </ToolCard>
         </div>
 
         <div className="space-y-6">
-          <div className="bg-[#2B2D31] p-6 rounded-2xl border border-[#3F4147] shadow-xl">
+          <ToolCard>
             <h4 className="text-sm font-bold text-white mb-4">{'How to use?'}</h4>
             <ol className="text-sm text-[#B5BAC1] space-y-3 list-decimal list-inside">
               <li>{'In Discord, go to'} <span className="text-white">Server Settings &gt; Integrations</span>.</li>
@@ -139,17 +137,17 @@ const WebhookTool: React.FC = () => {
               <li>{'Paste the URL in the input on the left.'}</li>
               <li>{'Type a message and click Send!'}</li>
             </ol>
-          </div>
+          </ToolCard>
 
-          <div className="bg-[#23A559]/5 p-6 rounded-2xl border border-[#23A559]/10">
+          <ToolCard className="bg-[#23A559]/5 border-[#23A559]/10">
             <h4 className="text-sm font-bold text-[#23A559] mb-2 flex items-center gap-2">
               <CheckCircle2 size={16} /> {'Privacy Note'}
             </h4>
             <p className="text-xs text-[#B5BAC1]">{"Your Webhook URLs are never stored. Requests are sent directly from your browser to Discord's servers."}</p>
-          </div>
+          </ToolCard>
         </div>
       </div>
-    </div>
+    </ToolShell>
   );
 };
 
